@@ -1,7 +1,7 @@
 
 public class Graph {
 	
-	private HashMap<Vertex, TreeSet> graph;
+	private HashMap<Vertex, TreeSet<Edge>> graph;
 	public static boolean useDistCost;
 	public static boolean returnAddress;
 
