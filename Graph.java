@@ -10,12 +10,11 @@ public class Graph {
 		readFile.nextLine();
 		readFile.nextLine();	// skip first two rows in the file
 		String line = readFile.nextLine();
-		while(!(line.equals("<\Node">")) {
+		while(!(line.equals("<\Nodes">")) {
 		    	graph.put(new Vertex(line), new TreeSet<Edge>());	// not sure if the the set should contain edges or not
 			String line = readFile.nextLine();
 		}
 	    	
-   		// add new while loop for adding edges to TreeSet
 	}
 	
 	@Override
