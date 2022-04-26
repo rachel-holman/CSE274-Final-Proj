@@ -2,7 +2,7 @@
 public class Graph {
 	
 	private HashMap<Vertex, TreeSet> graph;
-	public static boolean useDiseCo	st;
+	public static boolean useDistCost;
 	public static boolean returnAddress;
 
 	public Graph(String filename) {
