@@ -1,6 +1,8 @@
 
 public class Dijkstra {
   
+	private PriorityQueue<E> heap; // I think?
+	
   public static Path shortestPath() {
 		Path p = null;
 		return p;
