@@ -1,17 +1,11 @@
 
 public class Graph {
+	
+	private HashMap<Vertex, TreeSet> graph;
+	public static boolean useDiseCost;
+	public static boolean returnAddress;
 
   public Graph(String filename) {
-		
-	}
-	
-	public static boolean useDistCost() {
-		return true;
-		
-	}
-	
-	public static boolean returnAddress() {
-		return true;
 		
 	}
 	
