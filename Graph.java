@@ -24,5 +24,11 @@ public class Graph {
 		return ret;
 		
 	}
+				    
+    	public static Vertex getVertex(String symbol) {
+		for(Vertex v : graph.keySet())
+			if(v.getSymbol().equals(symbol)) return v;
+		return null;
+	}
   
 }
