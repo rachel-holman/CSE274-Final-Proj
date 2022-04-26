@@ -1,6 +1,6 @@
 
 public class Path implements Comparable<Path> {
-  private char vertex;
+  private String vertex;
   private String path;
   private int cost;
   
