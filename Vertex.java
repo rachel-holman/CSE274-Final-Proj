@@ -9,4 +9,12 @@ public class Vertex {
     this.symbol = parts[0];
     this.address = parts[1];
   }
+  
+  public String getSymbol() {
+    return this.symbol; 
+  }
+  
+  public String getAddress() {
+    return this.address; 
+  }
 }
