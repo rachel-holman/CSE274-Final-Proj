@@ -3,7 +3,7 @@ public class Dijkstra {
   
 	private PriorityQueue<E> heap; // I think?
 	
-  public static Path shortestPath() {
+  public static Path shortestPath(Graph graph, Vertex start, Vertex end) {
 		Path p = null;
 		return p;
 	}
