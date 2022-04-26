@@ -1,6 +1,5 @@
 
 public class Edge {
-  private Vertex source;
-  private Vertex destination;
+  private Vertex fromVertex, toVertex;
   private int timeCost, distanceCost;
 }
