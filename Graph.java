@@ -15,6 +15,7 @@ public class Graph {
 			String line = readFile.nextLine();
 		}
 	    	
+	    	// add while loop to go through and add all edges to graph
 	}
 	
 	@Override
