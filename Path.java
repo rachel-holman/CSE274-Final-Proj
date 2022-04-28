@@ -1,7 +1,7 @@
 
 public class Path implements Comparable<Path> {
   private String vertex;
-  private String path;
+  private String pathStr;
   private int cost;
   
   public Path(String vertex, int cost, String pathStr) {
@@ -12,5 +12,17 @@ public class Path implements Comparable<Path> {
   
   public int compareTo(Path other) {
     return cost - other.cost;    // lower cost goes first
+  }
+  
+  public String getVertex() {
+    return this.vertex; 
+  }
+  
+  public String getPathStr() {
+    return this.pathStr; 
+  }
+  
+  public String getCost() {
+    return this.cost; 
   }
 }
