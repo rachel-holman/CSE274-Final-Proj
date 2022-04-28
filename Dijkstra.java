@@ -3,6 +3,7 @@ public class Dijkstra {
 	
 	private statiic int totalCost;
 	
+	// definitely not confident that this method actually works
 	public static Path shortestPath(Graph graph, Vertex start, Vertex end) {
 
 		PriorityQueue<Path> pq = new PriorityQueue<Path>();
@@ -11,17 +12,27 @@ public class Dijkstra {
 		
 		while(!pq.isEmpty()) {
 			Path nextEntry = pq.remove();
-			if(visited.contains(nextEntry.getVertex()) {
+			if(nextEntry.getVertex().equals(end)) {
+				return nextEntry;
+			} else if(visited.contains(nextEntry.getVertex()) {
 			   continue;
 			} else {
-				for(Edge e : graph.getGraph().get(nextEntry.getVertex()))
-					if(!(visited.contains(e.getToVertex())))
-						
-			}
-			   
+				currVertex = nextEntry.getVertex();
+				currCost = nextEntry.getCost();
+				currPath = nextEntry.getPathStr();
+				visited.add(currVertex);
+				for(Edge e : graph.getGraph().get(currVertex)) {
+					String dest = e.getToVertex();
+					if(!(visited.contains(dest))) {
+						nextCost = currCost + (useDistCost ? e.getDistanceCost() : e.getTimeCost());
+						nextPath = currPath + dest;
+						pq.add(new Path(dest, nextCost, nextPath));
+					}
+				}		
+			}  
 		}
 		
-		return pq.peek();
+		return null;
 	}
   
 }
