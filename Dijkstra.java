@@ -1,16 +1,21 @@
 
 public class Dijkstra {
-  
-	private PriorityQueue<E> heap; // I think?
 	
-  public static Path shortestPath(Graph graph, Vertex start, Vertex end) {
-		Path p = null;
-		return p;
-	}
+	private statiic int totalCost;
 	
-	public static int totalCost() {
-		int total = 0;
-		return total;
+	public static Path shortestPath(Graph graph, Vertex start, Vertex end) {
+
+		PriorityQueue<Path> pq = new PriorityQueue<Path>();
+		pq.add(new Path(start, 0, start));
+		ArrayList<Vertex> visited = new ArrayList<Vertex>();
+		
+		while(!pq.isEmpty()) {
+			Path nextEntry = pq.remove();
+			if(visited.contains(nextEntry.getVertex())
+			   continue;
+		}
+		
+		return pq.peek();
 	}
   
 }
