@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 public class Dijkstra {
@@ -7,32 +8,57 @@ public class Dijkstra {
 
 	// definitely not confident that this method actually works
 	public static Path shortestPath(Graph graph, Vertex start, Vertex end) {
-
+		
 		PriorityQueue<Path> pq = new PriorityQueue<Path>();
-		pq.add(new Path(start.getSymbol(), 0, start.getSymbol()));
-		ArrayList<String> visited = new ArrayList<String>();
+		totalCost = 0;
+		pq.add(new Path(start, totalCost, new LinkedList<Edge>()));
+		ArrayList<Vertex> visited = new ArrayList<Vertex>();
 
 		while(!pq.isEmpty()) {
 			Path nextEntry = pq.remove();
-			if(nextEntry.getVertex().equals(end)) {
+			totalCost = nextEntry.getCost();
+			
+			if(nextEntry.getVertex() == end)
 				return nextEntry;
-			} else if(visited.contains(nextEntry.getVertex())) {
+			
+			if(visited.contains(nextEntry.getVertex())) {
 				continue;
 			} else {
-				String currVertex = nextEntry.getVertex();
-				int currCost = nextEntry.getCost();
-				String currPath = nextEntry.getPathStr();
-				visited.add(currVertex);
-				for(Edge e : graph.getGraph().get(graph.getVertex(currVertex))) {
-					String dest = e.getToVertex().getSymbol();
-					if(!(visited.contains(dest))) {
-						int nextCost = currCost + (Graph.useDistCost ? e.getDistanceCost() : e.getTimeCost());
-						String nextPath = currPath + dest;
-						pq.add(new Path(dest, nextCost, nextPath));
+				Vertex currVertex = nextEntry.getVertex();
+				for(Edge e : graph.getGraph().get(currVertex.getSymbol())) {
+					if(!visited.contains(e.getToVertex())) {
+						int newCost = totalCost + (Graph.useDistCost ? e.getDistanceCost() : e.getTimeCost());
+						LinkedList<Edge> newEdges = nextEntry.getEdges();
+						newEdges.add(e);
+						pq.add(new Path(e.getToVertex(), newCost, newEdges));
 					}
-				}		
-			}  
+				}
+			}
+			
+			visited.add(nextEntry.getVertex());
 		}
+		
+//		while(!pq.isEmpty()) {
+//			Path nextEntry = pq.remove();
+//			totalCost = nextEntry.getCost();
+//			if(nextEntry.getVertex().equals(end)) {
+//				return nextEntry;
+//			} else if(visited.contains(nextEntry.getVertex())) {
+//				continue;
+//			} else {
+//				Vertex currVertex = nextEntry.getVertex();
+//				LinkedList<Edge> path = nextEntry.getEdges();
+//				for(Edge e : graph.getGraph().get(currVertex)) {
+//					Vertex dest = e.getToVertex();
+//					if(!(visited.contains(dest))) {
+//						int newCost = totalCost + (Graph.useDistCost ? e.getDistanceCost() : e.getTimeCost());
+//						path.add(e);
+//						pq.add(new Path(dest, newCost, path));
+//					}
+//				}
+//				visited.add(currVertex);
+//			}  
+//		}
 
 		return null;
 	}
