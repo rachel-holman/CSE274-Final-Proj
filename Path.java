@@ -22,7 +22,7 @@ public class Path implements Comparable<Path> {
     return this.pathStr; 
   }
   
-  public String getCost() {
+  public int getCost() {
     return this.cost; 
   }
 }
