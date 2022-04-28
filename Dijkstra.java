@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
@@ -25,12 +26,12 @@ public class Dijkstra {
 				continue;
 			} else {
 				Vertex currVertex = nextEntry.getVertex();
-				for(Edge e : graph.getGraph().get(currVertex.getSymbol())) {
+				for(Edge e : graph.getGraph().get(currVertex)) {
 					if(!visited.contains(e.getToVertex())) {
-						int newCost = totalCost + (Graph.useDistCost ? e.getDistanceCost() : e.getTimeCost());
 						LinkedList<Edge> newEdges = nextEntry.getEdges();
 						newEdges.add(e);
-						pq.add(new Path(e.getToVertex(), newCost, newEdges));
+						int newCost = totalCost + (Graph.useDistCost ? e.getDistanceCost() : e.getTimeCost());
+						pq.add(new Path(graph.getVertex(e.getToVertex().getSymbol()), newCost, newEdges));
 					}
 				}
 			}
