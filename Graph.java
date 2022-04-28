@@ -78,4 +78,7 @@ public class Graph {
 		return null;
 	}
   
+	public Map getGraph() {
+		return this.graph;	
+	}
 }
