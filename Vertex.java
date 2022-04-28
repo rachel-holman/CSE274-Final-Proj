@@ -4,11 +4,10 @@ public class Vertex {
   private String address;
   // private int x, y;
   
-  public Vertex(String line) {
-    String[] parts = line.split("\t");
-    this.symbol = parts[0];
-    this.address = parts[1];
-  }
+  public Vertex(String symbol, String address) {
+		this.symbol = symbol;
+		this.address = address;
+	}
   
   public String getSymbol() {
     return this.symbol; 
