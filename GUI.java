@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class GUI extends JFrame implements ActionListener{
 
 	private static final int WIDTH = 1220;
-	private static final int HEIGHT = 650;
+	private static final int HEIGHT = 640;
 //	private DrawingCanvas canvas;
 	private ImageIcon imageIcon;
 	
@@ -35,11 +35,8 @@ public class GUI extends JFrame implements ActionListener{
 		//add(canvas);
 		
 		Container container = getContentPane();
-
 		container.setLayout(new BorderLayout());
 
-		
-		setLayout(new FlowLayout());
 		
 		JPanel picPanel = new JPanel();
 		
@@ -102,3 +99,4 @@ public class GUI extends JFrame implements ActionListener{
 	}
 	
 }
+
