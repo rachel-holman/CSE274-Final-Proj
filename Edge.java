@@ -18,11 +18,11 @@ public class Edge {
     return this.toVertex; 
   }
   
-  public Vertex getTimeCost() {
+  public int getTimeCost() {
     return this.timeCost; 
   }
   
-  public Vertex getDistanceCost() {
+  public int getDistanceCost() {
     return this.distanceCost; 
   }
 }
