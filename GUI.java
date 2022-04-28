@@ -7,7 +7,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-// This can be our bases for the GUI
+// This can be our basis for the GUI
 // Yes I knoiw right now it just paints a smily face
 // It is a place holder for the graph
 
