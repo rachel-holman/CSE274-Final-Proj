@@ -7,12 +7,16 @@ public class Dijkstra {
 
 		PriorityQueue<Path> pq = new PriorityQueue<Path>();
 		pq.add(new Path(start, 0, start));
-		ArrayList<Vertex> visited = new ArrayList<Vertex>();
+		ArrayList<String> visited = new ArrayList<String>();
 		
 		while(!pq.isEmpty()) {
 			Path nextEntry = pq.remove();
-			if(visited.contains(nextEntry.getVertex())
+			if(visited.contains(nextEntry.getVertex()) {
 			   continue;
+			} else {
+			   	
+			}
+			   
 		}
 		
 		return pq.peek();
