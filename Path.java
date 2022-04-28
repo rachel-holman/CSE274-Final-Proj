@@ -36,7 +36,7 @@ public class Path implements Comparable<Path> {
 			ret += "\tCost: " + (Graph.useDistCost ? e.getDistanceCost() + " miles" : e.getTimeCost() + " min");
 			ret += "\n";
 		}
-		ret += "\tTotal cost: " + getCost() + (Graph.useDistCost ? " miles" : " min");
+		ret += "Total cost: " + getCost() + (Graph.useDistCost ? " miles" : " min");
 		return ret;
 	}
 
@@ -45,8 +45,9 @@ public class Path implements Comparable<Path> {
 		for(Edge e : edges) {
 			ret += e.getFromVertex().getAddress() + "->" + e.getToVertex().getAddress();
 			ret += "\tCost: " + (Graph.useDistCost ? e.getDistanceCost() + " miles" : e.getTimeCost() + " min");
+			ret += "\t";
 		}
-		ret += "\tTotal cost: " + getCost() + (Graph.useDistCost ? " miles" : " min");
+		ret += "Total cost: " + getCost() + (Graph.useDistCost ? " miles" : " min");
 		return ret;
 	}
 
