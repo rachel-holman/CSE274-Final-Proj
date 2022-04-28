@@ -23,7 +23,7 @@ public class Dijkstra {
 				int currCost = nextEntry.getCost();
 				String currPath = nextEntry.getPathStr();
 				visited.add(currVertex);
-				for(Edge e : graph.getGraph().get(currVertex)) {
+				for(Edge e : graph.getGraph().get(graph.getVertex(currVertex))) {
 					String dest = e.getToVertex().getSymbol();
 					if(!(visited.contains(dest))) {
 						int nextCost = currCost + (Graph.useDistCost ? e.getDistanceCost() : e.getTimeCost());
