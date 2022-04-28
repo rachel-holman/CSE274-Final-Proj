@@ -14,7 +14,9 @@ public class Dijkstra {
 			if(visited.contains(nextEntry.getVertex()) {
 			   continue;
 			} else {
-			   	
+				for(Edge e : graph.getGraph().get(nextEntry.getVertex()))
+					if(!(visited.contains(e.getToVertex())))
+						
 			}
 			   
 		}
