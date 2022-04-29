@@ -32,7 +32,7 @@ public class Path implements Comparable<Path> {
 		if(Graph.returnAddress) return addressToString();
 		String ret = "";
 		for(Edge e : edges) {
-			ret += e.getFromVertex().getSymbol() + "->" + e.getToVertex().getSymbol();
+			ret += e.getFromVertex().getSymbol() + " -> " + e.getToVertex().getSymbol();
 			ret += "\tCost: " + (Graph.useDistCost ? e.getDistanceCost() + " miles" : e.getTimeCost() + " min");
 			ret += "\n";
 		}
@@ -43,12 +43,13 @@ public class Path implements Comparable<Path> {
 	private String addressToString() {
 		String ret = "";
 		for(Edge e : edges) {
-			ret += e.getFromVertex().getAddress() + "->" + e.getToVertex().getAddress();
+			ret += String.format("%-35s", e.getFromVertex().getAddress() + " -> " + e.getToVertex().getAddress());
 			ret += "\tCost: " + (Graph.useDistCost ? e.getDistanceCost() + " miles" : e.getTimeCost() + " min");
-			ret += "\t";
+			ret += "\n";
 		}
 		ret += "Total cost: " + getCost() + (Graph.useDistCost ? " miles" : " min");
 		return ret;
 	}
 
 }
+
