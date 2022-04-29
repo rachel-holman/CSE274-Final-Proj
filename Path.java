@@ -33,10 +33,10 @@ public class Path implements Comparable<Path> {
 		String ret = "";
 		for(Edge e : edges) {
 			ret += e.getFromVertex().getSymbol() + " -> " + e.getToVertex().getSymbol();
-			ret += "\tCost: " + (Graph.useDistCost ? e.getDistanceCost() + " miles" : e.getTimeCost() + " min");
+			ret += "\t(" + (Graph.useDistCost ? e.getDistanceCost() + " miles)" : e.getTimeCost() + " minutes)");
 			ret += "\n";
 		}
-		ret += "Total cost: " + getCost() + (Graph.useDistCost ? " miles" : " min");
+		ret += "Total"+ (Graph.useDistCost ? " distance" : " time") +" cost: " + getCost() + (Graph.useDistCost ? " miles" : " minutes");
 		return ret;
 	}
 
@@ -44,10 +44,10 @@ public class Path implements Comparable<Path> {
 		String ret = "";
 		for(Edge e : edges) {
 			ret += String.format("%-35s", e.getFromVertex().getAddress() + " -> " + e.getToVertex().getAddress());
-			ret += "\tCost: " + (Graph.useDistCost ? e.getDistanceCost() + " miles" : e.getTimeCost() + " min");
+			ret += "\t(" + (Graph.useDistCost ? e.getDistanceCost() + " miles)" : e.getTimeCost() + " minutes)");
 			ret += "\n";
 		}
-		ret += "Total cost: " + getCost() + (Graph.useDistCost ? " miles" : " min");
+		ret += "Total"+ (Graph.useDistCost ? " distance" : " time") +" cost: " + getCost() + (Graph.useDistCost ? " miles" : " minutes");
 		return ret;
 	}
 
