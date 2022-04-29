@@ -2,6 +2,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -37,6 +38,7 @@ public class GUI extends JFrame implements ActionListener{
 		Container container = getContentPane();
 		container.setLayout(new BorderLayout());
 
+		//-------------------------------------------------------------- Right side of screen
 		
 		JPanel picPanel = new JPanel();
 		
@@ -46,12 +48,40 @@ public class GUI extends JFrame implements ActionListener{
 		imageIcon = new ImageIcon(newimg);  // transform it back
 		
 		label1 = new JLabel(imageIcon);
-		label2 = new JLabel("test: This is where we will add the selection options and output textarea");
+		picPanel.add(label1);			// adds graph picture to the gui
 		
-		picPanel.add(label1);
+		
+		//-------------------------------------------------------------- Left side of screen
 		
 		JPanel info = new JPanel();
-		info.add(label2);
+		info.setLayout(new GridLayout(3,1));
+		
+		JPanel select = new JPanel();
+		select.setLayout(new GridLayout(1,2));
+		
+		JPanel selectStart = new JPanel();
+		JPanel selectEnd = new JPanel();
+		
+		selectStart.setBorder(new TitledBorder("Starting Location"));
+		selectEnd.setBorder(new TitledBorder("Destination"));
+		
+		label2 = new JLabel("This is where user will select start location");
+		selectStart.add(label2);
+		
+		select.add(selectStart);
+		select.add(selectEnd);
+		
+		
+		JPanel options = new JPanel();
+		options.setBorder(new TitledBorder("Options and Controls"));
+		
+		
+		JPanel output = new JPanel();
+		output.setBorder(new TitledBorder("Directions"));
+		
+		info.add(select);
+		info.add(options);
+		info.add(output);
 		
 		container.add(info, BorderLayout.WEST);
 		container.add(picPanel, BorderLayout.EAST);
@@ -99,4 +129,3 @@ public class GUI extends JFrame implements ActionListener{
 	}
 	
 }
-
