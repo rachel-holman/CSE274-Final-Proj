@@ -21,9 +21,8 @@ public class GUI extends JFrame implements ActionListener{
 	private ImageIcon imageIcon;
 	
 	JLabel label1, label2;
-	JTextField nameTF, addressTF, phoneTF, emailTF;
-	JButton addButton, saveButton;
-	JTextArea contactsTA;
+	JButton compute;
+	JTextArea directions, placeholder;
 	JComboBox selectBox;
 
 	/**
@@ -59,15 +58,15 @@ public class GUI extends JFrame implements ActionListener{
 		//-------------------------------------------------------------- Left side of screen
 		
 		JPanel info = new JPanel();
-		info.setLayout(new GridLayout(3,1));
+		info.setLayout(new BorderLayout());
 		
 		JPanel select = select();
 		JPanel options = options();
 		JPanel output = output();
 		
-		info.add(select);
-		info.add(options);
-		info.add(output);
+		info.add(select, BorderLayout.NORTH);
+		info.add(options, BorderLayout.CENTER);
+		info.add(output, BorderLayout.SOUTH);
 		
 		container.add(info, BorderLayout.WEST);
 		container.add(picPanel, BorderLayout.EAST);
@@ -87,8 +86,12 @@ public class GUI extends JFrame implements ActionListener{
 		selectStart.setBorder(new TitledBorder("Starting Location"));
 		selectEnd.setBorder(new TitledBorder("Destination"));
 		
-		label2 = new JLabel("This is where user will select start location");
-		selectStart.add(label2);
+		placeholder = new JTextArea(17, 10);
+		placeholder.setEditable(false);
+		placeholder.append("This is where user will select start location");
+		
+//		label2 = new JLabel("This is where user will select start location");
+		selectStart.add(placeholder);
 		
 		select.add(selectStart);
 		select.add(selectEnd);
@@ -115,6 +118,11 @@ public class GUI extends JFrame implements ActionListener{
 	public JPanel output() {
 		JPanel output = new JPanel();
 		output.setBorder(new TitledBorder("Directions"));
+		
+		directions = new JTextArea(10, 45);
+		directions.setEditable(false);
+		
+		output.add(directions);
 		
 		return output;
 	}
