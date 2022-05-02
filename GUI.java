@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class GUI extends JFrame implements ActionListener{
 
-	private static final int WIDTH = 1220;
+	private static final int WIDTH = 1200;
 	private static final int HEIGHT = 640;
 //	private DrawingCanvas canvas;
 	private ImageIcon imageIcon;
@@ -26,11 +26,15 @@ public class GUI extends JFrame implements ActionListener{
 	JTextArea contactsTA;
 	JComboBox selectBox;
 
-	
+	/**
+	 * Constructs the GUI
+	 */
 	public GUI() {
 		setSize(WIDTH, HEIGHT);
 		setTitle("Shortest Path GPS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		setLayout(new FlowLayout());
 		
 		//canvas = new DrawingCanvas();
 		//add(canvas);
@@ -41,6 +45,7 @@ public class GUI extends JFrame implements ActionListener{
 		//-------------------------------------------------------------- Right side of screen
 		
 		JPanel picPanel = new JPanel();
+		picPanel.setLayout(new FlowLayout());
 		
 		imageIcon = new ImageIcon(getClass().getResource("FinalProjectGraph_Final.png"));
 		Image image = imageIcon.getImage();
@@ -56,6 +61,23 @@ public class GUI extends JFrame implements ActionListener{
 		JPanel info = new JPanel();
 		info.setLayout(new GridLayout(3,1));
 		
+		JPanel select = select();
+		JPanel options = options();
+		JPanel output = output();
+		
+		info.add(select);
+		info.add(options);
+		info.add(output);
+		
+		container.add(info, BorderLayout.WEST);
+		container.add(picPanel, BorderLayout.EAST);
+	}
+	
+	/**
+	 * Selection panel where user selects a starting vertex and a destination
+	 * @return
+	 */
+	public JPanel select() {
 		JPanel select = new JPanel();
 		select.setLayout(new GridLayout(1,2));
 		
@@ -71,20 +93,42 @@ public class GUI extends JFrame implements ActionListener{
 		select.add(selectStart);
 		select.add(selectEnd);
 		
-		
+		return select;
+	}
+	
+	/**
+	 * Options panel where user selects time/distance cost and presses compute button
+	 * @return
+	 */
+	public JPanel options() {
 		JPanel options = new JPanel();
 		options.setBorder(new TitledBorder("Options and Controls"));
 		
+		return options;
 		
+	}
+	
+	/**
+	 * Output panel which displays shortest path
+	 * @return
+	 */
+	public JPanel output() {
 		JPanel output = new JPanel();
 		output.setBorder(new TitledBorder("Directions"));
 		
-		info.add(select);
-		info.add(options);
-		info.add(output);
+		return output;
+	}
+	
+	/**
+	 * Action listener for the compute button
+	 */
+	
+	// This method below will be used to change useDistCost from false to true with
+		// the press of a button
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
-		container.add(info, BorderLayout.WEST);
-		container.add(picPanel, BorderLayout.EAST);
 	}
 	
 	
@@ -113,19 +157,15 @@ public class GUI extends JFrame implements ActionListener{
 //		
 //	}
 	
+	/**
+	 * Main method
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		JFrame graph = new GUI();
 		graph.setVisible(true);
 	}
 	
-
-	// This method below will be used to change useDistCost from false to true with
-	// the press of a button
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }
