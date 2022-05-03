@@ -175,12 +175,13 @@ public class GUI extends JFrame implements ActionListener{
 	public JPanel output() {
 		JPanel output = new JPanel();
 		output.setBorder(new TitledBorder("Directions"));
-		
+
 		directions = new JTextArea(10, 45);
 		directions.setEditable(false);
-		
-		output.add(directions);
-		
+		JScrollPane scrollPane = new JScrollPane(directions);
+
+		output.add(scrollPane);
+
 		return output;
 	}
 	
