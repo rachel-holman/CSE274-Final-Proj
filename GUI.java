@@ -17,9 +17,9 @@ public class GUI extends JFrame implements ActionListener{
 
 	private static final int WIDTH = 1200;
 	private static final int HEIGHT = 640;
-//	private DrawingCanvas canvas;
 	private ImageIcon imageIcon;
 	
+	Graph g = new Graph("MapInformation.txt");
 	JLabel label1, label2;
 	JButton compute;
 	JTextArea directions, placeholder;
@@ -101,11 +101,62 @@ public class GUI extends JFrame implements ActionListener{
 	
 	/**
 	 * Options panel where user selects time/distance cost and presses compute button
-	 * @return
+	 * @return JPanel
 	 */
 	public JPanel options() {
 		JPanel options = new JPanel();
 		options.setBorder(new TitledBorder("Options and Controls"));
+		
+		
+		//Create the radio buttons.
+	    JRadioButton time = new JRadioButton("Quickest");
+	    time.setMnemonic(KeyEvent.VK_Q);
+	    time.setActionCommand("time");
+	    time.setSelected(true);
+
+	    JRadioButton distance = new JRadioButton("Shortest");
+	    distance.setMnemonic(KeyEvent.VK_D);
+	    distance.setActionCommand("dist");
+
+	    //Group the radio buttons.
+	    ButtonGroup group = new ButtonGroup();
+	    group.add(time);
+	    group.add(distance);
+	    
+	    
+	  //Create the radio buttons.
+	    JRadioButton symbol = new JRadioButton("Symbol");
+	    symbol.setMnemonic(KeyEvent.VK_S);
+	    symbol.setActionCommand("symbol");
+	    symbol.setSelected(true);
+
+	    JRadioButton address = new JRadioButton("Address");
+	    address.setMnemonic(KeyEvent.VK_A);
+	    address.setActionCommand("address");
+
+	    //Group the radio buttons.
+	    ButtonGroup group2 = new ButtonGroup();
+	    group2.add(symbol);
+	    group2.add(address);
+	    
+	    
+
+	    //Register a listener for the radio buttons.
+	    time.addActionListener(this);
+	    distance.addActionListener(this);
+	    address.addActionListener(this);
+	    symbol.addActionListener(this);
+	    
+	    //Create button to display directions in JTestArea
+	    compute = new JButton("Find path");
+	    compute.setActionCommand("compute");
+	    compute.addActionListener(this);
+	    
+	    options.add(time);
+	    options.add(distance);
+	    options.add(compute);
+	    options.add(symbol);
+	    options.add(address);
 		
 		return options;
 		
@@ -113,7 +164,7 @@ public class GUI extends JFrame implements ActionListener{
 	
 	/**
 	 * Output panel which displays shortest path
-	 * @return
+	 * @return JPanel
 	 */
 	public JPanel output() {
 		JPanel output = new JPanel();
@@ -135,35 +186,29 @@ public class GUI extends JFrame implements ActionListener{
 		// the press of a button
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if (e.getActionCommand().equals("time"))
+			Graph.useDistCost = false;
+		else if (e.getActionCommand().equals("dist")) 
+			Graph.useDistCost = true;
+		else if (e.getActionCommand().equals("symbol"))
+			Graph.returnAddress = false;
+		else if (e.getActionCommand().equals("address"))
+			Graph.returnAddress = true;
+		else if (e.getActionCommand().equals("compute")) {
+			
+			// change path based on the two vertexes selected by user!!
+			Path p = Dijkstra.shortestPath(g, g.getVertex("Q"), g.getVertex("D"));
+			String s = p.toString();
+			directions.setText(s);
+		}
+			
+		
+		
 		
 	}
 	
 	
-	// We may use the drawingCanvas class below to add arrows showing shortest path
-	// that's only if we have the time and energy to be extra
-	
-//	class DrawingCanvas extends JComponent {
-//		
-//		@Override
-//		public void paintComponent(Graphics g) {
-//			graph(g);
-//			
-//			super.paintComponent(g);
-//		}
-//
-//		public void graph(Graphics g) {
-//			g.setColor(Color.YELLOW);
-//			g.fillOval(100, 100, 300, 300);
-//			g.setColor(Color.BLUE);			
-//			g.fillOval(180, 150, 50, 50);
-//			g.fillOval(280, 150, 50, 50);
-//			g.setColor(Color.RED);			
-//			g.drawArc(180, 220, 150, 100, 180, 180);			
-//		}
-//
-//		
-//	}
+
 	
 	/**
 	 * Main method
