@@ -1,6 +1,6 @@
 
-
 public class Vertex {
+	
 	private String symbol;
 	private String address;
 
