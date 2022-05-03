@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -20,7 +19,8 @@ public class Graph {
 
 	public void readFile(String fileName) {
 		try {
-
+//			useDistCost= true;
+			
 			// Creates a scanner
 			Scanner file = new Scanner(new File(fileName));
 			String line = file.nextLine();
@@ -89,4 +89,4 @@ public class Graph {
 	public HashMap<Vertex, Set<Edge>> getGraph() {
 		return this.graph;	
 	}
-}
+} 
