@@ -113,6 +113,7 @@ public class GUI extends JFrame implements ActionListener{
 	    JRadioButton time = new JRadioButton("Quickest");
 	    time.setMnemonic(KeyEvent.VK_Q);
 	    time.setActionCommand("time");
+	    time.setHorizontalAlignment(SwingConstants.CENTER);
 	    time.setSelected(true);
 
 	    JRadioButton distance = new JRadioButton("Shortest");
@@ -124,11 +125,11 @@ public class GUI extends JFrame implements ActionListener{
 	    group.add(time);
 	    group.add(distance);
 	    
-	    
 	  //Create the radio buttons.
 	    JRadioButton symbol = new JRadioButton("Symbol");
 	    symbol.setMnemonic(KeyEvent.VK_S);
 	    symbol.setActionCommand("symbol");
+	    symbol.setHorizontalAlignment(SwingConstants.CENTER);
 	    symbol.setSelected(true);
 
 	    JRadioButton address = new JRadioButton("Address");
@@ -140,8 +141,6 @@ public class GUI extends JFrame implements ActionListener{
 	    group2.add(symbol);
 	    group2.add(address);
 	    
-	    
-
 	    //Register a listener for the radio buttons.
 	    time.addActionListener(this);
 	    distance.addActionListener(this);
@@ -153,11 +152,17 @@ public class GUI extends JFrame implements ActionListener{
 	    compute.setActionCommand("compute");
 	    compute.addActionListener(this);
 	    
-	    options.add(time,0);
-	    options.add(distance,1);
-	    options.add(compute,2);
-	    options.add(symbol,3);
-	    options.add(address,4);
+	    //Create labels to make more user-friendly
+	    JLabel lab1 = new JLabel("Path type:", SwingConstants.RIGHT);
+	    JLabel lab2 = new JLabel("Directions output:", SwingConstants.RIGHT);
+	    
+	    options.add(lab1,0);
+	    options.add(time,1);
+	    options.add(distance,2);
+	    options.add(compute,3);
+	    options.add(lab2,4);
+	    options.add(symbol,5);
+	    options.add(address,6);
 		
 		return options;
 		
