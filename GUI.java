@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -27,6 +30,7 @@ public class GUI extends JFrame implements ActionListener{
 	JButton compute;
 	JTextArea directions, placeholder;
 	Vertex startV, endV;
+	String symb1, symb2;
 
 	/**
 	 * Constructs the GUI
@@ -82,63 +86,66 @@ public class GUI extends JFrame implements ActionListener{
 	public JPanel select() {
 		JPanel select = new JPanel();
 		select.setLayout(new GridLayout(1,2));
-		
+
 		JPanel selectStart = new JPanel();
 		JPanel selectEnd = new JPanel();
-		
+
 		selectStart.setBorder(new TitledBorder("Starting Location"));
 		selectEnd.setBorder(new TitledBorder("Destination"));
+
 		String[] toAdd = new String[20];
 		try {
-		// Creates a scanner
-		Scanner file = new Scanner(new File("MapInformation.txt"));
-		String line = file.nextLine();
-		while (!line.equals("<Nodes>")) { line = file.nextLine(); }
+			// Creates a scanner
+			Scanner file = new Scanner(new File("MapInformation.txt"));
+			String line = file.nextLine();
+			while (!line.equals("<Nodes>")) { line = file.nextLine(); }
 
-					// Skips two lines of header text in the file
-		file.nextLine();
-		line = file.nextLine();
-		int i = 0;
-					// Creates Vertex objects (each of which contains a symbol and an address property)
-		while (!line.equals("</Nodes>")) {
-				toAdd[i] = line;
-				line = file.nextLine();
-				i++;
-		}
-		} catch (FileNotFoundException e) {
-			
-		}
-		
-		JList<String> startL = new JList<String>(toAdd);
-		JList<String> endL = new JList<String>(toAdd);
-		
-		ListSelectionListener startSelec = new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				String selection = startL.getSelectedValue();
-				String[] bits = selection.split("\t");
-				startV = new Vertex(bits[0], bits[1]);
+						// Skips two lines of header text in the file
+			file.nextLine();
+			line = file.nextLine();
+			int i = 0;
+						// Creates Vertex objects (each of which contains a symbol and an address property)
+			while (!line.equals("</Nodes>")) {
+					toAdd[i] = line;
+					line = file.nextLine();
+					i++;
 			}
-			
-		};
-		ListSelectionListener endSelec = new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				String selection = endL.getSelectedValue();
-				String[] bits = selection.split("\t");
-				endV = new Vertex(bits[0], bits[1]);
+			} catch (FileNotFoundException e) {
+				
 			}
+
+			JList<String> startL = new JList<String>(toAdd);
+			JList<String> endL = new JList<String>(toAdd);
+
+			ListSelectionListener startSelec = new ListSelectionListener() {
+				@Override
+				public void valueChanged(ListSelectionEvent e) {
+					String selection = startL.getSelectedValue();
+					String[] bits = selection.split("\t");
+					symb1 = "" + bits[0];
+					startV = new Vertex(bits[0], bits[1]);
+				}
+
+			};
+			ListSelectionListener endSelec = new ListSelectionListener() {
+				@Override
+				public void valueChanged(ListSelectionEvent e) {
+					String selection = endL.getSelectedValue();
+					String[] bits = selection.split("\t");
+					symb2 = "" + bits[0];
+					endV = new Vertex(bits[0], bits[1]);
+				}
+
+			};
+
+			startL.addListSelectionListener(startSelec);
+			endL.addListSelectionListener(endSelec);
+			selectStart.add(startL);
+			selectEnd.add(endL);
+			select.add(selectStart, BorderLayout.WEST);
+			select.add(selectEnd, BorderLayout.EAST);
 			
-		};
-		
-		startL.addListSelectionListener(startSelec);
-		endL.addListSelectionListener(endSelec);
-		selectStart.add(startL);
-		selectEnd.add(endL);
-		select.add(selectStart, BorderLayout.WEST);
-		select.add(selectEnd, BorderLayout.EAST);
-		
-		return select;
+			return select;
 	}
 
 	
@@ -248,7 +255,7 @@ public class GUI extends JFrame implements ActionListener{
 			if (startV == null || endV == null)
 				directions.setText("");
 			else {
-				Path p = Dijkstra.shortestPath(g, startV, endV);
+				Path p = Dijkstra.shortestPath(g, g.getVertex(symb1), g.getVertex(symb2));
 				String s = p.toString();
 				directions.setText(s);
 			}
