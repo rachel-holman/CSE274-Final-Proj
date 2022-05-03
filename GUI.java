@@ -256,8 +256,12 @@ public class GUI extends JFrame implements ActionListener{
 				directions.setText("");
 			else {
 				Path p = Dijkstra.shortestPath(g, g.getVertex(symb1), g.getVertex(symb2));
-				String s = p.toString();
-				directions.setText(s);
+				if (p == null)
+					directions.setText("Path does not exist");
+				else {
+					String s = p.toString();
+					directions.setText(s);
+				}
 			}
 		}
 
