@@ -1,7 +1,7 @@
 /**
  * 
  * @author Rachel Holman, Ryan Yu, Ben Collinson
- * @description: CSE 247 Final Project to create a program similar to a GPS system
+ * @description: CSE 274 Final Project to create a program similar to a GPS system
  * 
  */
 
@@ -100,11 +100,13 @@ public class GUI extends JFrame implements ActionListener{
 			String line = file.nextLine();
 			while (!line.equals("<Nodes>")) { line = file.nextLine(); }
 
-						// Skips two lines of header text in the file
+			// Skips two lines of header text in the file
 			file.nextLine();
 			line = file.nextLine();
 			int i = 0;
-						// Creates Vertex objects (each of which contains a symbol and an address property)
+			
+			// Creates Vertex objects (each of which contains a symbol and an 
+			// address property)
 			while (!line.equals("</Nodes>")) {
 					toAdd[i] = line;
 					line = file.nextLine();

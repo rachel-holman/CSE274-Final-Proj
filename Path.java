@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author Rachel Holman, Ryan Yu, Ben Collinson
+ * @description: CSE 274 Final Project to create a program similar to a GPS system
+ * 
+ */
+
 import java.util.LinkedList;
 
 public class Path implements Comparable<Path> {
@@ -5,50 +12,58 @@ public class Path implements Comparable<Path> {
 	private int cost;
 	private LinkedList<Edge> edges;
 
+	/**
+	 * Path workhorse constructor 
+	 * @param vertex object 
+	 * @param cost total int cost
+	 * @param edges LinkedList of edges
+	 */
 	public Path(Vertex vertex, int cost, LinkedList<Edge> edges) {
 		this.vertex = vertex;
 		this.cost = cost;
 		this.edges = edges;
 	}
 
+	/**
+	 * Comparison method to determine smaller cost
+	 */
 	public int compareTo(Path other) {
-		return cost - other.cost;    // lower cost goes first
+		return other.cost - cost;    // lower cost goes first
 	}
 
+	/**
+	 * This method retrieves a Vertex object
+	 * @return Vertex object
+	 */
 	public Vertex getVertex() {
 		return this.vertex; 
 	}
 
+	/**
+	 * This method retrieves LinkedList of Edge objects
+	 * @return LinkedList of Edge objects
+	 */
 	public LinkedList<Edge> getEdges() {
 		return this.edges; 
 	}
 
+	/**
+	 * This method retrieves cost
+	 * @return int cost
+	 */
 	public int getCost() {
 		return this.cost; 
 	}
 	
+	/**
+	 * toString() method for returning path directions output
+	 */
 	@Override
 	public String toString() {
-		if(Graph.returnAddress) return addressToString();
 		String ret = "";
-		for(Edge e : edges) {
-			ret += e.getFromVertex().getSymbol() + " -> " + e.getToVertex().getSymbol();
-			ret += "\t(" + (Graph.useDistCost ? e.getDistanceCost() + " miles)" : e.getTimeCost() + " minutes)");
-			ret += "\n";
-		}
-		ret += "\nTotal"+ (Graph.useDistCost ? " distance" : " time") +" cost: " + getCost() + (Graph.useDistCost ? " miles" : " minutes");
+		for(Edge e : edges)
+			ret += e.toString() + "\n";
+		ret += "\nTotal cost: " + getCost() + (Graph.useDistCost ? " miles" : " minutes");
 		return ret;
 	}
-
-	private String addressToString() {
-		String ret = "";
-		for(Edge e : edges) {
-			ret += String.format("%-35s", e.getFromVertex().getAddress() + " -> " + e.getToVertex().getAddress());
-			ret += "\t(" + (Graph.useDistCost ? e.getDistanceCost() + " miles)" : e.getTimeCost() + " minutes)");
-			ret += "\n";
-		}
-		ret += "\nTotal"+ (Graph.useDistCost ? " distance" : " time") +" cost: " + getCost() + (Graph.useDistCost ? " miles" : " minutes");
-		return ret;
-	}
-
-} 
+}

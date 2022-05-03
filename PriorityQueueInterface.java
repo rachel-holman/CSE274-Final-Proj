@@ -1,3 +1,8 @@
+/**
+ * Author: Ryan Yu, Rachel Holman, Ben Collinson
+ * Date: 5/3/22
+ * CSE 274 Project 4
+ */
 
 public interface PriorityQueueInterface<T extends Comparable<? super T>> {
 	boolean isEmpty();

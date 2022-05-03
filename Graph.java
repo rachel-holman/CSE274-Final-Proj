@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author Rachel Holman, Ryan Yu, Ben Collinson
+ * @description: CSE 274 Final Project to create a program similar to a GPS system
+ * 
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -12,15 +19,21 @@ public class Graph {
 	public static boolean useDistCost;
 	public static boolean returnAddress;
 
+	/**
+	 * Creates the graph variable filled with information in the file
+	 * @param fileName String with the graph information 
+	 */
 	public Graph(String fileName) {
 		graph = new HashMap<Vertex, Set<Edge>>();
 		readFile(fileName);
 	}
 
+	/**
+	 * This method reads in the file to create vertex and edge objects.
+	 * @param fileName String with the graph information 
+	 */
 	public void readFile(String fileName) {
 		try {
-//			useDistCost= true;
-			
 			// Creates a scanner
 			Scanner file = new Scanner(new File(fileName));
 			String line = file.nextLine();
@@ -73,20 +86,35 @@ public class Graph {
 		}
 	}
 
+	/**
+	 * Returns String representation of Graph
+	 */
 	@Override
 	public String toString() {
 		String ret = "";
+		for(Vertex v : graph.keySet())
+			for(Edge e : graph.get(v))
+				ret += e.toString() + "\n";
 		return ret;
 
 	}
 
+	/**
+	 * This method returns a vertex on the graph based on the symbol entered
+	 * @param symbol as a String variable
+	 * @return Vertex corresponding to the symbol, or null if vertex not found
+	 */
 	public Vertex getVertex(String symbol) {
 		for(Vertex v : graph.keySet())
 			if(v.getSymbol().equals(symbol)) return v;
 		return null;
 	}
 
+	/**
+	 * This method gives access to the graph's private HashMap variable
+	 * @return HashMap variable for the Graph
+	 */
 	public HashMap<Vertex, Set<Edge>> getGraph() {
 		return this.graph;	
 	}
-} 
+}
