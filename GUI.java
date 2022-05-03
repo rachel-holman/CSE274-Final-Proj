@@ -106,6 +106,7 @@ public class GUI extends JFrame implements ActionListener{
 	public JPanel options() {
 		JPanel options = new JPanel();
 		options.setBorder(new TitledBorder("Options and Controls"));
+		options.setLayout(new GridLayout(2,4));
 		
 		
 		//Create the radio buttons.
@@ -152,11 +153,11 @@ public class GUI extends JFrame implements ActionListener{
 	    compute.setActionCommand("compute");
 	    compute.addActionListener(this);
 	    
-	    options.add(time);
-	    options.add(distance);
-	    options.add(compute);
-	    options.add(symbol);
-	    options.add(address);
+	    options.add(time,0);
+	    options.add(distance,1);
+	    options.add(compute,2);
+	    options.add(symbol,3);
+	    options.add(address,4);
 		
 		return options;
 		
