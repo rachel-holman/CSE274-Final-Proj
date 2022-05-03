@@ -36,7 +36,7 @@ public class Path implements Comparable<Path> {
 			ret += "\t(" + (Graph.useDistCost ? e.getDistanceCost() + " miles)" : e.getTimeCost() + " minutes)");
 			ret += "\n";
 		}
-		ret += "Total"+ (Graph.useDistCost ? " distance" : " time") +" cost: " + getCost() + (Graph.useDistCost ? " miles" : " minutes");
+		ret += "\nTotal"+ (Graph.useDistCost ? " distance" : " time") +" cost: " + getCost() + (Graph.useDistCost ? " miles" : " minutes");
 		return ret;
 	}
 
@@ -47,9 +47,8 @@ public class Path implements Comparable<Path> {
 			ret += "\t(" + (Graph.useDistCost ? e.getDistanceCost() + " miles)" : e.getTimeCost() + " minutes)");
 			ret += "\n";
 		}
-		ret += "Total"+ (Graph.useDistCost ? " distance" : " time") +" cost: " + getCost() + (Graph.useDistCost ? " miles" : " minutes");
+		ret += "\nTotal"+ (Graph.useDistCost ? " distance" : " time") +" cost: " + getCost() + (Graph.useDistCost ? " miles" : " minutes");
 		return ret;
 	}
 
-}
-
+} 
