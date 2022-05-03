@@ -1,10 +1,10 @@
 import java.util.NoSuchElementException;
 
 /*
- * Author: Ryan Yu
- * Date: 4/21/22
- * CSE 274 Lab 11
- * Implementation of a heap using a priority queue
+ * Author: Ryan Yu, Rachel Holman, Ben Collinsworth
+ * Date: 5/3/22
+ * CSE 274 Project 4
+ * Implementation of a heap using a priority queue for Dijkstra Algorithm
  */
 
 public class HeapPriorityQueue<T extends Comparable<? super T>> implements PriorityQueueInterface<T> {
