@@ -82,45 +82,62 @@ public class GUI extends JFrame implements ActionListener{
 	public JPanel select() {
 		JPanel select = new JPanel();
 		select.setLayout(new GridLayout(1,2));
-
+		
 		JPanel selectStart = new JPanel();
 		JPanel selectEnd = new JPanel();
-
+		
 		selectStart.setBorder(new TitledBorder("Starting Location"));
 		selectEnd.setBorder(new TitledBorder("Destination"));
-
 		String[] toAdd = new String[20];
 		try {
-			// Creates a scanner
-			Scanner file = new Scanner(new File("MapInformation.txt"));
-			String line = file.nextLine();
-			while (!line.equals("<Nodes>")) { line = file.nextLine(); }
+		// Creates a scanner
+		Scanner file = new Scanner(new File("MapInformation.txt"));
+		String line = file.nextLine();
+		while (!line.equals("<Nodes>")) { line = file.nextLine(); }
 
-			// Skips two lines of header text in the file
-			file.nextLine();
-			line = file.nextLine();
-			int i = 0;
-			// Creates Vertex objects (each of which contains a symbol and an address property)
-			while (!line.equals("</Nodes>")) {
+					// Skips two lines of header text in the file
+		file.nextLine();
+		line = file.nextLine();
+		int i = 0;
+					// Creates Vertex objects (each of which contains a symbol and an address property)
+		while (!line.equals("</Nodes>")) {
 				toAdd[i] = line;
 				line = file.nextLine();
 				i++;
-			}
+		}
 		} catch (FileNotFoundException e) {
-
+			
 		}
 		
 		JList<String> startL = new JList<String>(toAdd);
 		JList<String> endL = new JList<String>(toAdd);
 		
+		ListSelectionListener startSelec = new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				String selection = startL.getSelectedValue();
+				String[] bits = selection.split("\t");
+				startV = new Vertex(bits[0], bits[1]);
+			}
+			
+		};
+		ListSelectionListener endSelec = new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				String selection = endL.getSelectedValue();
+				String[] bits = selection.split("\t");
+				endV = new Vertex(bits[0], bits[1]);
+			}
+			
+		};
 		
-		
-		//startL.addListSelectionListener(s);
+		startL.addListSelectionListener(startSelec);
+		endL.addListSelectionListener(endSelec);
 		selectStart.add(startL);
 		selectEnd.add(endL);
 		select.add(selectStart, BorderLayout.WEST);
 		select.add(selectEnd, BorderLayout.EAST);
-
+		
 		return select;
 	}
 
