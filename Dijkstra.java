@@ -8,7 +8,7 @@ public class Dijkstra {
 
 	public static Path shortestPath(Graph graph, Vertex start, Vertex end) {
 		
-		PriorityQueue<Path> pq = new PriorityQueue<Path>();
+		HeapPriorityQueue<Path> pq = new HeapPriorityQueue<Path>();
 		totalCost = 0;
 		pq.add(new Path(start, totalCost, new LinkedList<Edge>()));
 		ArrayList<Vertex> visited = new ArrayList<Vertex>();
