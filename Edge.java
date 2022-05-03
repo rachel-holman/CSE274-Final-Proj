@@ -26,3 +26,4 @@ public class Edge {
 		return this.distanceCost; 
 	}
 }
+ 
