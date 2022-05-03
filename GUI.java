@@ -85,16 +85,35 @@ public class GUI extends JFrame implements ActionListener{
 		
 		selectStart.setBorder(new TitledBorder("Starting Location"));
 		selectEnd.setBorder(new TitledBorder("Destination"));
+		String[] toAdd = new String[20];
+		try {
+		// Creates a scanner
+		Scanner file = new Scanner(new File("MapInformation.txt"));
+		String line = file.nextLine();
+		while (!line.equals("<Nodes>")) { line = file.nextLine(); }
+
+					// Skips two lines of header text in the file
+		file.nextLine();
+		line = file.nextLine();
+		int i = 0;
+					// Creates Vertex objects (each of which contains a symbol and an address property)
+		while (!line.equals("</Nodes>")) {
+				toAdd[i] = line;
+				line = file.nextLine();
+				i++;
+		}
+		} catch (FileNotFoundException e) {
+			
+		}
 		
-		placeholder = new JTextArea(17, 10);
-		placeholder.setEditable(false);
-		placeholder.append("This is where user will select start location");
 		
-//		label2 = new JLabel("This is where user will select start location");
-		selectStart.add(placeholder);
-		
-		select.add(selectStart);
-		select.add(selectEnd);
+		JList startL = new JList(toAdd);
+		JList endL = new JList(toAdd);
+		//startL.addListSelectionListener(s);
+		selectStart.add(startL);
+		selectEnd.add(endL);
+		select.add(selectStart, BorderLayout.WEST);
+		select.add(selectEnd, BorderLayout.EAST);
 		
 		return select;
 	}
