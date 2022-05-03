@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author Rachel Holman, Ryan Yu, Ben Collinson
+ * @description: CSE 274 Final Project to create a program similar to a GPS system
+ * 
+ */
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
@@ -6,6 +13,15 @@ public class Dijkstra {
 
 	private static int totalCost;
 
+	/**
+	 * This method features an algorithm used to compute the shortest path based on
+	 * time or distance.
+	 * 
+	 * @param graph as a Graph object
+	 * @param start as a Vertex object
+	 * @param end as a Vertex object
+	 * @return shortest path as a Path variable
+	 */
 	public static Path shortestPath(Graph graph, Vertex start, Vertex end) {
 		
 		HeapPriorityQueue<Path> pq = new HeapPriorityQueue<Path>();
@@ -14,7 +30,6 @@ public class Dijkstra {
 		ArrayList<Vertex> visited = new ArrayList<Vertex>();
 
 		while(!pq.isEmpty()) {
-			
 			// get highest priority path and cost
 			Path nextEntry = pq.remove();
 			totalCost = nextEntry.getCost();
@@ -38,7 +53,6 @@ public class Dijkstra {
 					}
 				}
 			}
-			
 			// add the current vertex to the list of visited vertices
 			visited.add(nextEntry.getVertex());
 		}
@@ -47,4 +61,4 @@ public class Dijkstra {
 		return null;
 	}
 
-} 
+}
